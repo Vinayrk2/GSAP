@@ -1,0 +1,151 @@
+GSAP : GreenSock Animation Platform
+
+gsap.to("selector",{"information":"of Animation})
+
+** target : 
+    Object : we can update the value of the properties [pageloading/gsap.js]
+    Array  : we can use to update multiple objects or DOMElement
+    DOMElement : CSS selector
+
+** parameter [ mainpulators ] :
+    - if we write number directly it is "px"
+    - if we want "vh","vw","%" then we can write it "-/+value(vh/vw/%)"
+
+
+Where, 
+-> gsap : is the object
+-> .to  : is method, there are four methods :> [1] from() , [2] to , [3] fromTo , [4] set
+
+[1] from   : given information to current state 
+[2] to     : current state to given state in information
+[3] fromto : we can define both from and to
+[4] set    : Immediately sets properties (no animation). It's essentially a zero-duration .to() tween which can be reverted.
+
+Selector can be an object, an DOMElement or bunch of Elements
+
+Properties of GSAP : 
+>> Duration : For how much time animation should perform
+>> Delay    : After what second animation to be performed
+>> Repeat   : how many times animation should perform [ infinite times : -1 ]
+>> yoyo     : for alternative behaviour
+>> stagger  : for multiple elements { one after another }
+>> ease     : Controls the rate of change during the animation, like the motion's "personality" or feel. Default: "power1.out"
+>> onComplete : is the function called after the animation completes
+
+>> repeatDelay : It adds delay between iterations
+
+>> ease     : MAkes animations smooth
+    -> bounse.in , bounse.out, bounce.inOut
+    -> power1.in , power1.out, power1.inOut
+
+    Ease out animations like "power1.out" are the best for UI transitions;
+    they're fast to start which helps the UI feel responsive, 
+    and then they ease out towards the end giving a natural feeling of friction.
+
+    -> power2.in , power2.out, power2.inOut
+    -> elastic
+
+>> force3D : true or false
+
+                                    // STAGGER //
+
+>> stagger : Number as value will be amount of seconds between the grids
+>> stagger : Object as value will be Some adv. settings.
+        --> amount :  The total amount of time (in seconds) that gets split among all the staggers.
+            suppose, 10 , [5 grids] : then 2s for one grid 
+        --> each   :  The amount of time (in seconds) between each sub-tween's start time.
+        --> from   : 
+                - Number : will be start index
+                - String : predefined values : "start","center","edges","random","end"
+                - Array  : grid, specify the [x,y] between 0-1
+        --> grid : 
+                - Array  : no. of rows and cols.
+                - "auto" : automatically detects the rows and cols.
+        --> axis : 
+                - "x" or "y" 
+        --> ease : The ease that distributes the start times of the animations. 
+                   So "power2" would start out with bigger gaps and then get more tightly clustered
+                   toward the end. Default: "none".
+
+>> stagger : function, which will return the delay, in the function we can write,
+             custom code.
+             parameter : index,target,list : target array
+
+
+                                // LIFECYCLE FUNCTIONS //
+
+onStart : 
+onUpdate :
+onComplete :
+
+
+                                // Control placement with the position parameter //
+
+to(..., delay) // delay : after this seconds, animation performed
+
+                                // Working with timeline  //
+
+pause()
+play()
+progress()
+restart()
+resume()
+reverse()
+seek()
+time()
+duration()
+timeScale()
+kill()
+
+
+                                // Nesting Timeline //
+
+function intro() {
+	var tl = gsap.timeline();
+	//...add animations here...
+	return tl;
+}
+
+function middle() {
+	var tl = gsap.timeline();
+	//...add animations here...
+	return tl;
+}
+
+function conclusion() {
+	var tl = gsap.timeline();
+	//...add animations here...
+	return tl;
+}
+
+// stitch them together in a master timeline...
+var master = gsap.timeline();
+master.add(intro())
+      .add(middle(), "+=2")     //with a gap of 2 seconds
+      .add(conclusion(), "-=1") //overlap by 1 second
+
+                                // SCROLLTRIGGER //
+      
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".box",{
+    x:200,
+    duration:4,
+    scrollTrigger:".box"
+})
+
+scrollTrigger >> used for scrolling animations
+
+possible values :
+
+>> selector : for which the scroll performed
+>> Object   : containing animation details
+
+    --> Object Properties ::: 
+        ++> trigger : selector
+        ++> toggleAction : Determines how the linked animation at the 4 distinct toggle places 
+                            - onEnter, onLeave, onEnterBack, and onLeaveBack
+
+                            onEnter : when scrolling down and container appears
+                            onLeave : when we scroll down though the container appears
+                            onEnterBack : when we scroll up and 

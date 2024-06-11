@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 200vh;
+    width:100vw;
+    background-color: burlywood;
+    padding: 40px 40px;
+    position: relative;
+}
+
+.box{
+    height:100px;
+    width: 100px;
+    background-color: aquamarine;
+    border:2px double white;
+    margin:20px 0px;
+}
+
+#box2{
+    position:absolute;
+    bottom:20px;
+}

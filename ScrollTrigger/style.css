@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 1300px;
+    width:100vw;
+    background-color: #ac0f07;
+}
+
+.box{
+    height:200px;
+    width:200px;
+    background-color: #fff;
+    position: absolute;
+    top:900px;
+    margin-bottom: 200px;
+}
